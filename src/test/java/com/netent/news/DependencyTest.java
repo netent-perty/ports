@@ -23,15 +23,12 @@ public class DependencyTest {
     public static final String PORT_OUT = COM_NETENT_NEWS + "application.port.out";
     public static final String DOMAIN = COM_NETENT_NEWS + "domain";
     private static final String ADAPTER = COM_NETENT_NEWS + "adapter";
-    private static final String ADAPTER_IN = COM_NETENT_NEWS + "adapter.in";
     private static final String APPLICATION = COM_NETENT_NEWS + "application";
     private static Map<String, Set<String>> collectDependencies;
 
     @BeforeAll
     static void beforeAll() throws IOException {
         File start = new File("src/main/java");
-        String currentPath = start.getAbsolutePath();
-        String[] path = currentPath.split("/");
         // Visit all Java files and check dependencies
         collectDependencies = new HashMap<>();
         visitJavaFiles(start, collectDependencies);
