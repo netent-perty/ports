@@ -1,4 +1,4 @@
-package com.netent.news.logging;
+package com.netent.news.config.logging;
 
 public class LoggingConstants {
 

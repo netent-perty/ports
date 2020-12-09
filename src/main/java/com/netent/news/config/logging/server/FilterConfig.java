@@ -1,4 +1,4 @@
-package com.netent.news.logging.server;
+package com.netent.news.config.logging.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

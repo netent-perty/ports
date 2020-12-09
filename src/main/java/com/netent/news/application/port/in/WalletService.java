@@ -1,4 +1,4 @@
-package com.netent.news.port.in;
+package com.netent.news.application.port.in;
 
 import com.netent.news.domain.WalletId;
 import org.springframework.stereotype.Service;

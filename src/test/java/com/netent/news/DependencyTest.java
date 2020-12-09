@@ -19,10 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class DependencyTest {
 
     public static final String COM_NETENT_NEWS = "com.netent.news.";
+    public static final String ADAPTER_OUT = COM_NETENT_NEWS + "adapter.out";
     public static final String PORT_OUT = COM_NETENT_NEWS + "application.port.out";
     public static final String DOMAIN = COM_NETENT_NEWS + "domain";
+    private static final String ADAPTER = COM_NETENT_NEWS + "adapter";
     private static final String ADAPTER_IN = COM_NETENT_NEWS + "adapter.in";
-    private static final String PORT_IN = COM_NETENT_NEWS + "port.in";
+    private static final String APPLICATION = COM_NETENT_NEWS + "application";
     private static Map<String, Set<String>> collectDependencies;
 
     @BeforeAll
@@ -45,18 +47,23 @@ public class DependencyTest {
         Set<String> keys = collectDependencies.keySet().stream().filter(k -> k.startsWith(DOMAIN)).collect(Collectors.toSet());
         assertTrue(keys.size() > 0);
 
-        keys.forEach(k -> assertEquals(collectDependencies.get(k).size(), 0, "Package " + k + " depends on " + collectDependencies.get(k)));
+        for (String k : keys) {
+            Set<String> illicitInPackage = collectDependencies.get(k).stream()
+                    .filter(p -> !p.startsWith(DOMAIN))
+                    .collect(Collectors.toSet());
+            assertEquals(illicitInPackage.size(), 0, "Package " + k + " depends on " + illicitInPackage);
+        }
     }
 
     @Test
-    void application_must_only_depend_on_domain_and_port_out() {
+    void application_must_only_depend_on_domain() {
         Set<String> keys = collectDependencies.keySet().stream().filter(k -> k.startsWith(COM_NETENT_NEWS + "application")).collect(Collectors.toSet());
         assertTrue(keys.size() > 0);
 
         for (String k : keys) {
             Set<String> illicitInPackage = collectDependencies.get(k).stream()
                     .filter(p -> !p.startsWith(DOMAIN))
-                    .filter(p -> !p.startsWith(PORT_OUT))
+                    .filter(p -> !p.startsWith(APPLICATION))
                     .collect(Collectors.toSet());
             assertEquals(illicitInPackage.size(), 0, "Package " + k + " depends on " + illicitInPackage);
         }
@@ -64,7 +71,7 @@ public class DependencyTest {
 
     @Test
     void adapter_out_must_only_depend_on_domain_and_port_out() {
-        Set<String> keys = collectDependencies.keySet().stream().filter(k -> k.startsWith(COM_NETENT_NEWS + "adapter.out")).collect(Collectors.toSet());
+        Set<String> keys = collectDependencies.keySet().stream().filter(k -> k.startsWith(ADAPTER_OUT)).collect(Collectors.toSet());
         assertTrue(keys.size() > 0);
 
         for (String k : keys) {
@@ -77,28 +84,15 @@ public class DependencyTest {
     }
 
     @Test
-    void port_in_must_only_depend_on_domain_and_adapter_in() {
-        Set<String> keys = collectDependencies.keySet().stream().filter(k -> k.startsWith(COM_NETENT_NEWS + "port.in")).collect(Collectors.toSet());
+    void adapter_must_only_depend_on_domain_and_application() {
+        Set<String> keys = collectDependencies.keySet().stream().filter(k -> k.startsWith(ADAPTER)).collect(Collectors.toSet());
         assertTrue(keys.size() > 0);
 
         for (String k : keys) {
             Set<String> illicitInPackage = collectDependencies.get(k).stream()
                     .filter(p -> !p.startsWith(DOMAIN))
-                    .filter(p -> !p.startsWith(ADAPTER_IN))
-                    .collect(Collectors.toSet());
-            assertEquals(illicitInPackage.size(), 0, "Package " + k + " depends on " + illicitInPackage);
-        }
-    }
-
-    @Test
-    void adapter_in_must_only_depend_on_domain_and_port_in() {
-        Set<String> keys = collectDependencies.keySet().stream().filter(k -> k.startsWith(ADAPTER_IN)).collect(Collectors.toSet());
-        assertTrue(keys.size() > 0);
-
-        for (String k : keys) {
-            Set<String> illicitInPackage = collectDependencies.get(k).stream()
-                    .filter(p -> !p.startsWith(DOMAIN))
-                    .filter(p -> !p.startsWith(PORT_IN))
+                    .filter(p -> !p.startsWith(APPLICATION))
+                    .filter(p -> !p.startsWith(ADAPTER))
                     .collect(Collectors.toSet());
             assertEquals(illicitInPackage.size(), 0, "Package " + k + " depends on " + illicitInPackage);
         }

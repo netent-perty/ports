@@ -1,4 +1,4 @@
-package com.netent.news.logging.client;
+package com.netent.news.config.logging.client;
 
 import org.reactivestreams.Publisher;
 import org.slf4j.Logger;
@@ -23,12 +23,12 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import static com.netent.news.logging.LoggingConstants.HEADERS;
-import static com.netent.news.logging.LoggingConstants.REQUEST_BODY;
-import static com.netent.news.logging.LoggingConstants.REQUEST_METHOD;
-import static com.netent.news.logging.LoggingConstants.REQUEST_URI;
-import static com.netent.news.logging.LoggingConstants.RESPONSE_BODY;
-import static com.netent.news.logging.LoggingConstants.RESPONSE_STATUS;
+import static com.netent.news.config.logging.LoggingConstants.HEADERS;
+import static com.netent.news.config.logging.LoggingConstants.REQUEST_BODY;
+import static com.netent.news.config.logging.LoggingConstants.REQUEST_METHOD;
+import static com.netent.news.config.logging.LoggingConstants.REQUEST_URI;
+import static com.netent.news.config.logging.LoggingConstants.RESPONSE_BODY;
+import static com.netent.news.config.logging.LoggingConstants.RESPONSE_STATUS;
 import static java.util.Objects.requireNonNull;
 import static net.logstash.logback.argument.StructuredArguments.kv;
 import static org.slf4j.LoggerFactory.getLogger;

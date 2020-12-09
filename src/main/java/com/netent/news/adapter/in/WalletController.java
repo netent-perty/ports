@@ -1,8 +1,8 @@
 package com.netent.news.adapter.in;
 
 import com.netent.news.domain.WalletId;
-import com.netent.news.port.in.GetBalanceResponse;
-import com.netent.news.port.in.WalletService;
+import com.netent.news.application.port.in.GetBalanceResponse;
+import com.netent.news.application.port.in.WalletService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.netent.news.logging.server;
+package com.netent.news.config.logging.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import static com.netent.news.logging.LoggingConstants.REQUEST_BODY;
-import static com.netent.news.logging.LoggingConstants.REQUEST_METHOD;
-import static com.netent.news.logging.LoggingConstants.REQUEST_QUERY;
-import static com.netent.news.logging.LoggingConstants.REQUEST_URI;
-import static com.netent.news.logging.LoggingConstants.RESPONSE_BODY;
-import static com.netent.news.logging.LoggingConstants.RESPONSE_STATUS;
+import static com.netent.news.config.logging.LoggingConstants.REQUEST_BODY;
+import static com.netent.news.config.logging.LoggingConstants.REQUEST_METHOD;
+import static com.netent.news.config.logging.LoggingConstants.REQUEST_QUERY;
+import static com.netent.news.config.logging.LoggingConstants.REQUEST_URI;
+import static com.netent.news.config.logging.LoggingConstants.RESPONSE_BODY;
+import static com.netent.news.config.logging.LoggingConstants.RESPONSE_STATUS;
 import static net.logstash.logback.argument.StructuredArguments.kv;
 
 public final class LoggingFilter extends OncePerRequestFilter {
