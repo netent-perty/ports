@@ -21,6 +21,7 @@ import static com.netent.news.config.logging.LoggingConstants.RESPONSE_BODY;
 import static com.netent.news.config.logging.LoggingConstants.RESPONSE_STATUS;
 import static net.logstash.logback.argument.StructuredArguments.kv;
 
+@SuppressWarnings("PlaceholderCountMatchesArgumentCount")
 public final class LoggingFilter extends OncePerRequestFilter {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoggingFilter.class);
